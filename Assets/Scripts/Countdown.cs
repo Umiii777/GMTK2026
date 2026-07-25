@@ -42,15 +42,14 @@ public class Countdown
     public bool IsFinished => RemainingSeconds <= 0f;
 
     /// <summary>
-    /// 剩余时间的显示文本，格式：分:秒:毫秒（0:00:000）
+    /// 剩余时间的显示文本，格式：MssSSS
     /// </summary>
     public string FormattedRemainingTime
     {
         get
         {
             TimeSpan ts = TimeSpan.FromSeconds(RemainingSeconds);
-            return string.Format("{0}:{1:00}:{2:000}",
-                (int)ts.TotalMinutes, ts.Seconds, ts.Milliseconds);
+            return string.Format("{0}{1:00}{2:000}",(int)ts.TotalMinutes, ts.Seconds, ts.Milliseconds);
         }
     }
 }

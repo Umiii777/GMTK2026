@@ -1,16 +1,93 @@
+using System.Collections;
 using UnityEngine;
 
 public class NumberFallManager : MonoBehaviour
 {
-    public GameObject[] numberPrefabs = new GameObject[10]; // 数字预制体，下标 0~9 对应数字
-    public Transform second2;                               // 秒位（十位）数字的生成位置
-    public Timer timer;                                     // 计时器，从中读取剩余时间
-    
-    void Start()
+    public static NumberFallManager instance;
+
+    public bool isToFallMinuteNumbers;
+    public bool isToFallSecondNumbers;
+    public bool isToFallMillisecondNumbers;
+    public int chanceForNoMillisecondNumbers = 5;
+    public float intervalMillisecondNumbersFalling = 0.3f;
+
+    [SerializeField]
+    private GameObject[] numberPrefabs;
+    [SerializeField]
+    private Transform[] timeNumberPositions;
+
+    private void Awake()
     {
-        // 从格式化时间(如 "1:23:456")中取出秒的个位数字
-        int index = int.Parse(timer.countdown.FormattedRemainingTime[3].ToString());
-        // 在 second2 位置生成对应数字，父对象设为 Manager
-        Instantiate(numberPrefabs[index], second2.position, Quaternion.identity, transform);
+        instance = this;
+    }
+
+    private void Start()
+    {
+        isToFallSecondNumbers = true;
+        isToFallMillisecondNumbers = true;
+        StartCoroutine(KeepFallingMinuteNumbers());
+        StartCoroutine(KeepFallingSecondNumbers());
+        StartCoroutine(KeepFallingMillisecondNumbers());
+    }
+
+    private IEnumerator KeepFallingMinuteNumbers()
+    {
+        while (true)
+        {
+            if (isToFallMinuteNumbers)
+                FallMinuteNumbers();
+            yield return new WaitForSeconds(60f);
+        }
+    }
+
+    private IEnumerator KeepFallingSecondNumbers()
+    {
+        while (true)
+        {
+            if (isToFallSecondNumbers)
+            {
+                if ((int)Timer.instance.GetRemainingSeconds() % 10 == 0)
+                    FallSecondNumbers(2);
+                else
+                    FallSecondNumbers(1);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    private IEnumerator KeepFallingMillisecondNumbers()
+    {
+        while (true)
+        {
+            if (isToFallMillisecondNumbers && Random.Range(0, chanceForNoMillisecondNumbers) == 0)
+                FallMillisecondNumbers(Random.Range(1, timeNumberPositions.Length - 2));
+            yield return new WaitForSeconds(intervalMillisecondNumbersFalling);
+        }
+    }
+
+    private void FallMinuteNumbers()
+    {
+        int number = int.Parse(Timer.instance.countdown.FormattedRemainingTime[0].ToString());
+        Instantiate(numberPrefabs[number], timeNumberPositions[0].position, Quaternion.identity, transform);
+    }
+
+    private void FallSecondNumbers(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            int number = int.Parse(Timer.instance.countdown.FormattedRemainingTime[2 - i].ToString());
+            Instantiate(numberPrefabs[number], timeNumberPositions[2 - i].position, Quaternion.identity, transform);
+        }
+    }
+
+    private void FallMillisecondNumbers(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            int number = int.Parse(Timer.instance.countdown.FormattedRemainingTime[4 - i].ToString());
+            GameObject numberfall = Instantiate(numberPrefabs[number], timeNumberPositions[4 - i].position, Quaternion.identity, transform);
+            numberfall.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+            numberfall.GetComponent<Rigidbody2D>().gravityScale = 2f;
+        }
     }
 }
