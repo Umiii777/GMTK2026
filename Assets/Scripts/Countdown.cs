@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 倒计时器：从创建时刻开始，对指定时长进行倒计时
 /// </summary>
-public class CountdownTimer
+public class Countdown
 {
     /// <summary>
     /// 计时开始时刻（游戏启动以来的真实秒数）
@@ -20,7 +20,7 @@ public class CountdownTimer
     /// 创建计时器并立即开始倒计时
     /// </summary>
     /// <param name="duration">倒计时总时长（秒）</param>
-    public CountdownTimer(float duration)
+    public Countdown(float duration)
     {
         _duration = duration;
         _startTime = Time.realtimeSinceStartup;
