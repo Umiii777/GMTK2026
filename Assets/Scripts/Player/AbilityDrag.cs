@@ -13,6 +13,13 @@ public class AbilityDrag : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused)
+        {
+            if (targetJoint != null)
+                OnDropThings();
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             TryDragThings();
@@ -24,6 +31,9 @@ public class AbilityDrag : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (PauseManager.IsPaused)
+            return;
+
         if (targetJoint)
         {
             targetJoint.target = GetMouseWorldPosition2D();

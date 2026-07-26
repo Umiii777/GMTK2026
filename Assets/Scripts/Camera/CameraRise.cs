@@ -42,6 +42,9 @@ public class CameraRise : MonoBehaviour
 
     public bool IsRising => _isRising;
 
+    /// <summary>供 UnityEvent / 难度系统调用</summary>
+    public void SetSpeed(float speed) => Speed = speed;
+
     private void Start()
     {
         _velocityY = 0f;
