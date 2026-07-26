@@ -12,6 +12,7 @@ public class Movement_Move : MonoBehaviour
     private Vector2 direction, desiredVelocity, velocity;
     private Rigidbody2D rb;
     private Ground ground;
+    private Movement_Dash dash;
 
     private float maxSpeedChange, accleration;
     private bool isGrounding;
@@ -21,6 +22,7 @@ public class Movement_Move : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
         controller = GetComponent<Controller>();
+        dash = GetComponent<Movement_Dash>();
     }
 
     private void Update()
@@ -31,6 +33,10 @@ public class Movement_Move : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 冲刺期间由 Movement_Dash 接管水平速度
+        if (dash != null && dash.IsDashing)
+            return;
+
         isGrounding = ground.OnGround;
         velocity = rb.velocity;
 
