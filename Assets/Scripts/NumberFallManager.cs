@@ -21,7 +21,7 @@ public class NumberFallManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    public void StartFalling()
     {
         StartCoroutine(KeepFallingMinuteNumbers());
         StartCoroutine(KeepFallingSecondNumbers());

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FailureUI : MonoBehaviour
 {
@@ -16,11 +17,14 @@ public class FailureUI : MonoBehaviour
     public void OnClickRestart()
     {
         ResetOldTelevision();
+        GameManager.instance.isToSkipMainMenu = true;
+        SceneManager.LoadScene(0);
     }
 
     public void OnClickMainMenu()
     {
         ResetOldTelevision();
+        SceneManager.LoadScene(0);
     }
 
     private void ResetOldTelevision()

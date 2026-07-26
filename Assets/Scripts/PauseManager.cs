@@ -55,6 +55,8 @@ public class PauseManager : MonoBehaviour
             if (player != null)
                 _playerBody = player.GetComponent<Rigidbody2D>();
         }
+
+        Pause();
     }
 
     private void OnDestroy()
