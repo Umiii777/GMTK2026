@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: DigitalDisplayRegular-ODEO SDF_Number-fall
   m_EditorClassIdentifier: 
-  hashCode: -701023545
+  hashCode: 1476539025
   material: {fileID: 5274217032416805193}
-  materialHashCode: -2144712569
+  materialHashCode: 1963006609
   m_Version: 1.1.0
   m_SourceFontFileGUID: 1c24450e3e15055429c06d7b3ec6010e
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 1c24450e3e15055429c06d7b3ec6010e, type: 3}
@@ -593,7 +593,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 0, g: 0.79622644, b: 0.009484735, a: 1}
+    - _FaceColor: {r: 0.19607843, g: 0.79622644, b: 0.009484735, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0.31950873, g: 0.4716981, b: 0.33255354, a: 1}
