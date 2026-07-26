@@ -26,7 +26,10 @@ public class Timer : MonoBehaviour
             timeNumberTexts[i].text = countdown.FormattedRemainingTime[i].ToString();
 
         if (countdown.IsFinished)
+        {
             GameManager.instance.StopGamePlay();
+            UIManager.instance.LoadGameClearUI();
+        }
     }
 
     public float GetRemainingSeconds() => countdown.RemainingSeconds;
