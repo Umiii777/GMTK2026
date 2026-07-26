@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 1450410587069793370}
   - component: {fileID: -3177784465285460754}
   - component: {fileID: 3711209044935890339}
-  m_Layer: 0
+  - component: {fileID: 4672771447010703768}
+  m_Layer: 4
   m_Name: Number-fall_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +189,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.01
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -282,13 +283,13 @@ BoxCollider2D:
   m_GameObject: {fileID: 3218208666372686380}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8b7b734b0993d7a419527f9b838fa22b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 53
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -318,3 +319,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &4672771447010703768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3218208666372686380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d147fc3853f243d887112c6f44583ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massType: 0
+  dragMoveType: 0
+  canDrag: 1
+  limitDragDistance: 0
+  maxDragDistance: 3

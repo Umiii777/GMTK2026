@@ -15,5 +15,8 @@ public class DamageManager : MonoBehaviour
     
     public void OnGetDamage()
     {
+        Debug.Log("Game Over!");
+        GameManager.instance.StopGamePlay();
+        UIManager.instance.LoadFailureUI();
     }
 }

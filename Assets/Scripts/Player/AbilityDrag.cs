@@ -70,7 +70,29 @@ public class AbilityDrag : MonoBehaviour
     private Vector2 GetMouseWorldPosition2D()
     {
         Vector3 pos = Input.mousePosition;
+
+        // 以下两行是为了匹配老电视滤镜的鱼眼透视特效 by ZJWCY at 2026/7/26 14:27
+        if (mainCam.GetComponent<OldTelevision>().enabled)
+            pos = TransformMousePos(pos);
+
         pos.z = -mainCam.transform.position.z;
         return mainCam.ScreenToWorldPoint(pos);
+    }
+    private Vector2 TransformMousePos(Vector2 mousePos)
+    {
+        var distortion = OldTelevision.Distortion;
+        var resolution = Screen.currentResolution;
+
+        mousePos.x /= resolution.width;
+        mousePos.y /= resolution.height;
+
+        var x = mousePos.x;
+        mousePos.x += Mathf.Pow(mousePos.y * 2f - 1f, 2f) * distortion * (mousePos.x - 0.5f);
+        mousePos.y += Mathf.Pow(x * 2f - 1f, 2f) * distortion * (mousePos.y - 0.5f);
+
+        mousePos.x *= resolution.width;
+        mousePos.y *= resolution.height;
+
+        return mousePos;
     }
 }

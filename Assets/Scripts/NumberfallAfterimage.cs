@@ -2,10 +2,11 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class NumberfalAfterimage : MonoBehaviour
+public class NumberfallAfterimage : MonoBehaviour
 {
     private void Start()
     {
+        transform.position += Vector3.forward;
         StartCoroutine(KeepDecreasingAlpha());
     }
 

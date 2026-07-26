@@ -5,9 +5,9 @@ public class NumberFallManager : MonoBehaviour
 {
     public static NumberFallManager instance;
 
-    public bool isToFallMinuteNumbers;
-    public bool isToFallSecondNumbers;
-    public bool isToFallMillisecondNumbers;
+    public bool isToFallMinuteNumbers = true;
+    public bool isToFallSecondNumbers = true;
+    public bool isToFallMillisecondNumbers = true;
     public int chanceForNoMillisecondNumbers = 5;
     public float intervalMillisecondNumbersFalling = 0.3f;
 
@@ -23,8 +23,6 @@ public class NumberFallManager : MonoBehaviour
 
     private void Start()
     {
-        isToFallSecondNumbers = true;
-        isToFallMillisecondNumbers = true;
         StartCoroutine(KeepFallingMinuteNumbers());
         StartCoroutine(KeepFallingSecondNumbers());
         StartCoroutine(KeepFallingMillisecondNumbers());
@@ -36,7 +34,9 @@ public class NumberFallManager : MonoBehaviour
         {
             if (isToFallMinuteNumbers)
                 FallMinuteNumbers();
-            yield return new WaitForSeconds(60f);
+            
+            float remainingSeconds = Timer.instance.GetRemainingSeconds();
+            yield return new WaitForSeconds((int)remainingSeconds % 60 + remainingSeconds - (int)remainingSeconds);
         }
     }
 

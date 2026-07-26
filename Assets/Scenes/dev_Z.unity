@@ -584,7 +584,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: b354890bfe061c647ad85b7023cd6d69, type: 3}
   - {fileID: 2800000, guid: 673b522294ea12d45a799273d4f23199, type: 3}
   warpTexTwo:
-  - {fileID: 2800000, guid: fb04a851bc5c48244bd62e866b60d562, type: 3}
+  - {fileID: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 680000234}
   - component: {fileID: 680000233}
   - component: {fileID: 680000243}
+  - component: {fileID: 680000244}
   - component: {fileID: 680000242}
   - component: {fileID: 680000241}
   m_Layer: 0
@@ -819,6 +820,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c073d788247c440b68ab8f3ee8e864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &680000244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680000232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813775bef7525ca428c16a001de7b08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldPrefabs:
+  - {fileID: 4664856414307653176, guid: cd9cb2ce7c9ba6c468f126cfdba64599, type: 3}
+  - {fileID: 2762065724180980397, guid: 835256f3a0cd02942aff4251e5f59a2f, type: 3}
+  - {fileID: 7761814096469163733, guid: 25337981f60ede64a828cf73694e7aa0, type: 3}
+  shields: []
 --- !u!1 &811826604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,9 +1053,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4703d20544762e742b4d065e95c29a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isToFallMinuteNumbers: 0
-  isToFallSecondNumbers: 0
-  isToFallMillisecondNumbers: 0
+  isToFallMinuteNumbers: 1
+  isToFallSecondNumbers: 1
+  isToFallMillisecondNumbers: 1
   chanceForNoMillisecondNumbers: 4
   intervalMillisecondNumbersFalling: 0.3
   numberPrefabs:
@@ -1761,7 +1779,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0.4867924, b: 0.0470157, a: 1}
   m_FlipX: 0
@@ -2009,7 +2027,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 680000237}
   - {fileID: 2069669599}
+  - {fileID: 680000237}
   - {fileID: 1305915109}
   - {fileID: 1230733378}

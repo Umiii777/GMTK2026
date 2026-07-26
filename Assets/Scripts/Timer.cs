@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
     public static Timer instance;
     public Countdown countdown;
 
+    private bool isStoped;
     private TextMeshPro[] timeNumberTexts;
 
     private void Awake()
@@ -18,19 +19,21 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < timeNumberTexts.Length; i++)
-        {
-            timeNumberTexts[i].text = countdown.FormattedRemainingTime[i].ToString();
-        }
+        if (!isStoped)
+            for (int i = 0; i < timeNumberTexts.Length; i++)
+                timeNumberTexts[i].text = countdown.FormattedRemainingTime[i].ToString();
 
         if (countdown.IsFinished)
-        {
-            NumberFallManager.instance.StopAllCoroutines();
-            GetComponent<RandomMovementHorizontal>().StopAllCoroutines();
-        }
+            GameManager.instance.StopGamePlay();
     }
 
     public void StartCountdown(int seconds) => countdown = new Countdown(seconds);
 
     public float GetRemainingSeconds() => countdown.RemainingSeconds;
+    
+    public void StopTimer()
+    {
+        isStoped = true;
+        GetComponent<RandomMovementHorizontal>().StopAllCoroutines();
+    }
 }
