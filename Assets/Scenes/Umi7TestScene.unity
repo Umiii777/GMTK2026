@@ -581,6 +581,148 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &615006190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615006192}
+  - component: {fileID: 615006191}
+  m_Layer: 0
+  m_Name: DifficultyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &615006191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615006190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47cfe946cb094b54a6e9c72db23765b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraTransform: {fileID: 519420032}
+  _cameraRise: {fileID: 519420033}
+  _heightMode: 0
+  _milestones:
+  - Name: 
+    Height: 25
+    TriggerOnce: 1
+    SetCameraSpeed: 1
+    CameraSpeed: 2
+    OnReached:
+      m_PersistentCalls:
+        m_Calls: []
+  - Name: 
+    Height: 0
+    TriggerOnce: 0
+    SetCameraSpeed: 0
+    CameraSpeed: 0
+    OnReached:
+      m_PersistentCalls:
+        m_Calls: []
+  - Name: 
+    Height: 0
+    TriggerOnce: 0
+    SetCameraSpeed: 0
+    CameraSpeed: 0
+    OnReached:
+      m_PersistentCalls:
+        m_Calls: []
+  - Name: 
+    Height: 0
+    TriggerOnce: 0
+    SetCameraSpeed: 0
+    CameraSpeed: 0
+    OnReached:
+      m_PersistentCalls:
+        m_Calls: []
+  - Name: 
+    Height: 0
+    TriggerOnce: 0
+    SetCameraSpeed: 0
+    CameraSpeed: 0
+    OnReached:
+      m_PersistentCalls:
+        m_Calls: []
+  _logTriggers: 0
+--- !u!4 &615006192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615006190}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.39114395, y: 0.032230034, z: -0.05587029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &664010633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664010635}
+  - component: {fileID: 664010634}
+  m_Layer: 0
+  m_Name: PauseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &664010634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664010633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383111727517a4d7ebf789bfc84d8e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraRise: {fileID: 519420033}
+  _clearPlayerVelocity: 1
+  _playerBody: {fileID: 2015507637}
+  OnPaused:
+    m_PersistentCalls:
+      m_Calls: []
+  OnResumed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &664010635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664010633}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.39114395, y: 0.032230034, z: -0.05587029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1114983774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,3 +1604,5 @@ SceneRoots:
   - {fileID: 1601183922}
   - {fileID: 420741189}
   - {fileID: 2111408118}
+  - {fileID: 615006192}
+  - {fileID: 664010635}
