@@ -8,6 +8,9 @@ public class Movement_Scale : MonoBehaviour
     [Tooltip("切换缩放的冷却时间")]
     [SerializeField, Range(0f, 2f)] private float toggleCooldown = 0.1f;
 
+    [Tooltip("是否已解锁缩小（肉鸽选到后开启，按 Tab 切换）")]
+    [SerializeField] private bool isUnlocked = false;
+
     private Controller controller;
     private Vector3 originalScale;
     private bool isShrunk;
@@ -15,6 +18,9 @@ public class Movement_Scale : MonoBehaviour
     private float cooldownRemaining;
 
     public bool IsShrunk => isShrunk;
+    public bool IsUnlocked => isUnlocked;
+
+    public void Unlock() => isUnlocked = true;
 
     private void Awake()
     {
@@ -24,11 +30,17 @@ public class Movement_Scale : MonoBehaviour
 
     private void Update()
     {
+        if (!isUnlocked || PauseManager.IsPaused)
+            return;
+
         desiredToggle |= controller.input.RetrieveScaleInput();
     }
 
     private void FixedUpdate()
     {
+        if (!isUnlocked)
+            return;
+
         if (cooldownRemaining > 0f)
             cooldownRemaining -= Time.deltaTime;
 

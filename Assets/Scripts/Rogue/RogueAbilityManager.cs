@@ -9,7 +9,8 @@ public enum RogueAbilityId
     ExtraJump,   // Movement_Jump
     DragNumbers, // AbilityDrag
     Shield,      // ShieldManager 伞
-    Dash         // Movement_Dash
+    Dash,        // Movement_Dash
+    Shrink       // Movement_Scale
 }
 
 [Serializable]
@@ -39,7 +40,7 @@ public class RogueAbilityManager : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private AbilityDrag _abilityDrag;
 
-    [Header("奖池（5 种能力）")]
+    [Header("奖池")]
     [SerializeField] private List<RogueAbilityConfig> _abilities = new List<RogueAbilityConfig>
     {
         new RogueAbilityConfig
@@ -81,6 +82,14 @@ public class RogueAbilityManager : MonoBehaviour
             Description = "解锁冲刺（Left Shift）",
             RemoveAfterPick = true,
             MaxStacks = 1
+        },
+        new RogueAbilityConfig
+        {
+            Id = RogueAbilityId.Shrink,
+            DisplayName = "缩小",
+            Description = "解锁缩小（Tab 切换体型）",
+            RemoveAfterPick = true,
+            MaxStacks = 1
         }
     };
 
@@ -92,6 +101,7 @@ public class RogueAbilityManager : MonoBehaviour
     private Movement_Move _move;
     private Movement_Jump _jump;
     private Movement_Dash _dash;
+    private Movement_Scale _scale;
     private bool _choiceOpen;
 
     private void Awake()
@@ -176,6 +186,11 @@ public class RogueAbilityManager : MonoBehaviour
                 if (_dash != null)
                     _dash.Unlock();
                 break;
+
+            case RogueAbilityId.Shrink:
+                if (_scale != null)
+                    _scale.Unlock();
+                break;
         }
 
         if (!_stacks.ContainsKey(id))
@@ -213,6 +228,8 @@ public class RogueAbilityManager : MonoBehaviour
 
             // 已解锁类：若组件已解锁则不再进池
             if (a.Id == RogueAbilityId.Dash && _dash != null && _dash.IsUnlocked)
+                continue;
+            if (a.Id == RogueAbilityId.Shrink && _scale != null && _scale.IsUnlocked)
                 continue;
             if (a.Id == RogueAbilityId.DragNumbers)
             {
@@ -253,5 +270,7 @@ public class RogueAbilityManager : MonoBehaviour
             _jump = _player.GetComponent<Movement_Jump>();
         if (_dash == null)
             _dash = _player.GetComponent<Movement_Dash>();
+        if (_scale == null)
+            _scale = _player.GetComponent<Movement_Scale>();
     }
 }
