@@ -24,6 +24,7 @@ public class FailureUI : MonoBehaviour
     public void OnClickMainMenu()
     {
         ResetOldTelevision();
+        GameManager.instance.isToSkipMainMenu = false;
         SceneManager.LoadScene(0);
     }
 

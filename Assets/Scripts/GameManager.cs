@@ -7,32 +7,13 @@ public class GameManager : MonoBehaviour
 
     public bool isToSkipMainMenu;
 
-    [SerializeField]
-    private GameObject platformSpawner;
-    [SerializeField]
-    private GameObject mainMenuUI;
-
     private void Awake()
     {
         if (instance == null)
             instance = this;
         DontDestroyOnLoad(instance);
-        OnLoadScene();
-        SceneManager.sceneLoaded += OnLoadScene;
-    }
-
-    private void OnLoadScene(Scene scene = default, LoadSceneMode mode = default)
-    {
-        if (isToSkipMainMenu)
-        {
-            mainMenuUI.SetActive(false);
-            StartGamePlay();
-        }
-        else
-        {
-            Timer.instance?.StopTimer();
-            NumberFallManager.instance?.StopAllCoroutines();
-        }
+        Timer.instance?.StopTimer();
+        NumberFallManager.instance?.StopAllCoroutines();
     }
 
     public void StopGamePlay()
@@ -48,6 +29,6 @@ public class GameManager : MonoBehaviour
         Timer.instance.StartTimer(90f);
         NumberFallManager.instance.StartFalling();
 
-        platformSpawner.SetActive(true);
+        FindAnyObjectByType<PlatformSpawner>(FindObjectsInactive.Include).gameObject.SetActive(true);
     }
 }
