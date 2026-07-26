@@ -8,12 +8,19 @@ public class AbilityDrag : MonoBehaviour
     public float frequency = 5f;
     public float damping = 1f;
 
+    [Tooltip("是否已解锁拖拽数字（肉鸽选到后开启）")]
+    [SerializeField] private bool isUnlocked = false;
+
     private TargetJoint2D targetJoint;
     private BaseObject draggingObj;
 
+    public bool IsUnlocked => isUnlocked;
+
+    public void Unlock() => isUnlocked = true;
+
     private void Update()
     {
-        if (PauseManager.IsPaused)
+        if (PauseManager.IsPaused || !isUnlocked)
         {
             if (targetJoint != null)
                 OnDropThings();
@@ -31,7 +38,7 @@ public class AbilityDrag : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (PauseManager.IsPaused)
+        if (PauseManager.IsPaused || !isUnlocked)
             return;
 
         if (targetJoint)

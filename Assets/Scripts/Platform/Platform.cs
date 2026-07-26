@@ -9,6 +9,13 @@ public class Platform : MonoBehaviour, IPoolable
     [Tooltip("预制体在长度=1 时的基准 scale.x；一般保持 1")]
     [SerializeField] private float _baseScaleX = 1f;
 
+    [Header("外观")]
+    [Tooltip("生成时从中随机选一个 Sprite；留空则不改")]
+    [SerializeField] private Sprite[] _spriteVariants;
+
+    [Tooltip("要换图的渲染器；为空则自动找自身或子物体")]
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
     private Vector3 _baseScale;
     private bool _baseScaleCached;
     private float _length = 1f;
@@ -19,6 +26,11 @@ public class Platform : MonoBehaviour, IPoolable
     private void Awake()
     {
         CacheBaseScale();
+
+        if (_spriteRenderer == null)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (_spriteRenderer == null)
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     /// <summary>
@@ -40,6 +52,7 @@ public class Platform : MonoBehaviour, IPoolable
         CacheBaseScale();
         transform.localScale = _baseScale;
         _length = 1f;
+        PickRandomSprite();
     }
 
     public void OnDespawned()
@@ -47,6 +60,17 @@ public class Platform : MonoBehaviour, IPoolable
         CacheBaseScale();
         transform.localScale = _baseScale;
         _length = 1f;
+    }
+
+    private void PickRandomSprite()
+    {
+        if (_spriteRenderer == null || _spriteVariants == null || _spriteVariants.Length == 0)
+            return;
+
+        int index = Random.Range(0, _spriteVariants.Length);
+        Sprite sprite = _spriteVariants[index];
+        if (sprite != null)
+            _spriteRenderer.sprite = sprite;
     }
 
     private void CacheBaseScale()

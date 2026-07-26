@@ -8,6 +8,9 @@ public class Movement_Dash : MonoBehaviour
     [Tooltip("冲刺时是否锁定垂直速度为 0")]
     [SerializeField] private bool freezeVertical = true;
 
+    [Tooltip("是否已解锁冲刺（肉鸽选到后开启）")]
+    [SerializeField] private bool isUnlocked = false;
+
     private Controller controller;
     private Rigidbody2D rb;
     private Vector2 velocity;
@@ -18,6 +21,9 @@ public class Movement_Dash : MonoBehaviour
     private bool desiredDash;
 
     public bool IsDashing { get; private set; }
+    public bool IsUnlocked => isUnlocked;
+
+    public void Unlock() => isUnlocked = true;
 
     private void Awake()
     {
@@ -57,7 +63,7 @@ public class Movement_Dash : MonoBehaviour
 
     private void TryStartDash()
     {
-        if (cooldownRemaining > 0f)
+        if (!isUnlocked || cooldownRemaining > 0f)
             return;
 
         IsDashing = true;

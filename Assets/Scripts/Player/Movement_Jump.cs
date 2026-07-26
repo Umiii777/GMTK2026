@@ -9,6 +9,20 @@ public class Movement_Jump : MonoBehaviour
     [SerializeField, Range(0f, 5f)] private float donwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
 
+    public float JumpHeight
+    {
+        get => jumpHeight;
+        set => jumpHeight = Mathf.Max(0f, value);
+    }
+
+    public int MaxAirJumps
+    {
+        get => maxAirJumps;
+        set => maxAirJumps = Mathf.Clamp(value, 0, 10);
+    }
+
+    public void AddAirJump(int amount = 1) => MaxAirJumps = maxAirJumps + amount;
+
     private Controller controller;
     private Rigidbody2D rb;
     private Ground ground;

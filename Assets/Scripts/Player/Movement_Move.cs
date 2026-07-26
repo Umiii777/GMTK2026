@@ -8,6 +8,14 @@ public class Movement_Move : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
     [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
 
+    public float MaxSpeed
+    {
+        get => maxSpeed;
+        set => maxSpeed = Mathf.Max(0f, value);
+    }
+
+    public void AddMaxSpeed(float amount) => MaxSpeed = maxSpeed + amount;
+
     private Controller controller;
     private Vector2 direction, desiredVelocity, velocity;
     private Rigidbody2D rb;
