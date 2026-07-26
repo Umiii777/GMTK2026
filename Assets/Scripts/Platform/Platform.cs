@@ -16,6 +16,12 @@ public class Platform : MonoBehaviour, IPoolable
     [Tooltip("要换图的渲染器；为空则自动找自身或子物体")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
+    [Header("单向平台")]
+    [Tooltip("自动配置 PlatformEffector2D，可从下方穿过")]
+    [SerializeField] private bool _oneWay = true;
+
+    [SerializeField, Range(1f, 360f)] private float _surfaceArc = 180f;
+
     private Vector3 _baseScale;
     private bool _baseScaleCached;
     private float _length = 1f;
@@ -26,6 +32,7 @@ public class Platform : MonoBehaviour, IPoolable
     private void Awake()
     {
         CacheBaseScale();
+        EnsureOneWayPlatform();
 
         if (_spriteRenderer == null)
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -71,6 +78,25 @@ public class Platform : MonoBehaviour, IPoolable
         Sprite sprite = _spriteVariants[index];
         if (sprite != null)
             _spriteRenderer.sprite = sprite;
+    }
+
+    private void EnsureOneWayPlatform()
+    {
+        if (!_oneWay)
+            return;
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col == null)
+            return;
+
+        col.usedByEffector = true;
+
+        PlatformEffector2D effector = GetComponent<PlatformEffector2D>();
+        if (effector == null)
+            effector = gameObject.AddComponent<PlatformEffector2D>();
+
+        effector.useOneWay = true;
+        effector.surfaceArc = _surfaceArc;
     }
 
     private void CacheBaseScale()
