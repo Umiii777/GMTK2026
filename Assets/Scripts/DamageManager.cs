@@ -15,5 +15,6 @@ public class DamageManager : MonoBehaviour
     
     public void OnGetDamage()
     {
+        Debug.Log("Game Over!");
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -9201424807376592625}
   - component: {fileID: 3811055035790966152}
   - component: {fileID: -8782751448206126226}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Number-fall_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.01
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -282,13 +282,13 @@ BoxCollider2D:
   m_GameObject: {fileID: 5196460620446824934}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8b7b734b0993d7a419527f9b838fa22b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 53
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
