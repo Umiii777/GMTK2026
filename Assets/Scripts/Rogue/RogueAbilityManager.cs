@@ -145,6 +145,7 @@ public class RogueAbilityManager : MonoBehaviour
 
         _choiceOpen = true;
         PauseManager.Instance?.Pause();
+        Timer.instance?.PauseTimer();
 
         if (UIManager.instance != null)
             UIManager.instance.LoadAbilityChoiceUI(offered, OnAbilityPicked);
@@ -208,6 +209,7 @@ public class RogueAbilityManager : MonoBehaviour
 
         _choiceOpen = false;
         PauseManager.Instance?.Resume();
+        Timer.instance?.ResumeTimer();
     }
 
     private List<RogueAbilityConfig> BuildAvailablePool()

@@ -6,7 +6,7 @@ using UnityEngine.U2D;
 public class OldTelevision : MonoBehaviour
 {
     public Shader shader;
-    //public bool pixelize = true;
+    public bool pixelize = true;
 
     [Header("___________________ Shader Properties ___________________")]
     [Range(0, 20)] public int density = 17;
@@ -29,18 +29,21 @@ public class OldTelevision : MonoBehaviour
             if (null == mat)
             {
                 mat = new Material(shader);
-                propertyIDs = new int[11];
-                propertyIDs[0] = Shader.PropertyToID("_Distortion");
-                propertyIDs[1] = Shader.PropertyToID("_Brightness");
-                propertyIDs[2] = Shader.PropertyToID("_Density");
-                propertyIDs[3] = Shader.PropertyToID("_Interval");
-                propertyIDs[4] = Shader.PropertyToID("_Speed");
-                propertyIDs[5] = Shader.PropertyToID("_RGBOffset");
-                propertyIDs[6] = Shader.PropertyToID("_ScreenHeight");
-                propertyIDs[7] = Shader.PropertyToID("_WarpTexH");
-                propertyIDs[8] = Shader.PropertyToID("_WarpIntenH");
-                propertyIDs[9] = Shader.PropertyToID("_WarpTexV");
-                propertyIDs[10] = Shader.PropertyToID("_WarpIntenV");
+                TempWarning.InvokeDebug(() =>
+                {
+                    propertyIDs = new int[11];
+                    propertyIDs[0] = Shader.PropertyToID("_Distortion");
+                    propertyIDs[1] = Shader.PropertyToID("_Brightness");
+                    propertyIDs[2] = Shader.PropertyToID("_Density");
+                    propertyIDs[3] = Shader.PropertyToID("_Interval");
+                    propertyIDs[4] = Shader.PropertyToID("_Speed");
+                    propertyIDs[5] = Shader.PropertyToID("_RGBOffset");
+                    propertyIDs[6] = Shader.PropertyToID("_ScreenHeight");
+                    propertyIDs[7] = Shader.PropertyToID("_WarpTexH");
+                    propertyIDs[8] = Shader.PropertyToID("_WarpIntenH");
+                    propertyIDs[9] = Shader.PropertyToID("_WarpTexV");
+                    propertyIDs[10] = Shader.PropertyToID("_WarpIntenV");
+                });
 #if !DEBUG
                 mat.SetFloat("_Distortion", distortion);
                 mat.SetFloat("_Brightness", brightness);
@@ -75,43 +78,46 @@ public class OldTelevision : MonoBehaviour
 #if !DEBUG
         SetMatProperties();
 #endif
-        Mat.SetFloat(propertyIDs[0], distortion);
-        Mat.SetFloat(propertyIDs[1], brightness);
-        Mat.SetFloat(propertyIDs[2], density);
-        Mat.SetFloat(propertyIDs[3], interval);
-        Mat.SetFloat(propertyIDs[4], speed);
-        Mat.SetVector(propertyIDs[5], RGBOffset);
-        Mat.SetFloat(propertyIDs[6], Screen.height);
-
-        if (warp)
+        TempWarning.InvokeDebug(() =>
         {
-            float w = Random.Range(0f, stabilityOne);
-            if (w >= 0.02f && w <= 0.06f)
+            Mat.SetFloat(propertyIDs[0], distortion);
+            Mat.SetFloat(propertyIDs[1], brightness);
+            Mat.SetFloat(propertyIDs[2], density);
+            Mat.SetFloat(propertyIDs[3], interval);
+            Mat.SetFloat(propertyIDs[4], speed);
+            Mat.SetVector(propertyIDs[5], RGBOffset);
+            Mat.SetFloat(propertyIDs[6], Screen.height);
+            
+            if (warp)
             {
-                Mat.SetTexture(propertyIDs[7], warpTexOne[Random.Range(0, warpTexOne.Length)]);
-                Mat.SetFloat(propertyIDs[8], w);
-                w = Random.Range(0f, stabilityTwo);
-                if (warpVertical && w >= 0.38f && w <= 1f)
+                float w = Random.Range(0f, stabilityOne);
+                if (w >= 0.02f && w <= 0.06f)
                 {
-                    Mat.SetTexture(propertyIDs[9], warpTexTwo[Random.Range(0, warpTexTwo.Length)]);
-                    Mat.SetFloat(propertyIDs[10], w);
+                    Mat.SetTexture(propertyIDs[7], warpTexOne[Random.Range(0, warpTexOne.Length)]);
+                    Mat.SetFloat(propertyIDs[8], w);
+                    w = Random.Range(0f, stabilityTwo);
+                    if (warpVertical && w >= 0.38f && w <= 1f)
+                    {
+                        Mat.SetTexture(propertyIDs[9], warpTexTwo[Random.Range(0, warpTexTwo.Length)]);
+                        Mat.SetFloat(propertyIDs[10], w);
+                    }
+                    else
+                        Mat.SetFloat(propertyIDs[10], 0);
                 }
                 else
-                    Mat.SetFloat(propertyIDs[10], 0);
+                    Mat.SetFloat(propertyIDs[8], 0);
             }
             else
+            {
                 Mat.SetFloat(propertyIDs[8], 0);
-        }
-        else
-        {
-            Mat.SetFloat(propertyIDs[8], 0);
-            Mat.SetFloat(propertyIDs[10], 0);
-        }
+                Mat.SetFloat(propertyIDs[10], 0);
+            }
 /*#if DEBUG
-        pixelCam.runInEditMode = true;
-#endif
+            pixelCam.runInEditMode = true;
+#endif*/
+        });
 
-        pixelCam.enabled = pixelize;*/
+        //pixelCam.enabled = pixelize;
         Graphics.Blit(src, dest, Mat);
     }
 
@@ -125,7 +131,7 @@ public class OldTelevision : MonoBehaviour
             Mat.SetTexture(propertyIDs[1], warpTexOne[Random.Range(0, warpTexOne.Length)]);
             Mat.SetFloat(propertyIDs[2], w);
             w = Random.Range(0f, stabilityTwo);
-            if (w >= 0.38f && w <= 1f)
+            if (warpVertical && w >= 0.38f && w <= 1f)
             {
                 Mat.SetTexture(propertyIDs[3], warpTexTwo[Random.Range(0, warpTexTwo.Length)]);
                 Mat.SetFloat(propertyIDs[4], w);
