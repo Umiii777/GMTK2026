@@ -1163,6 +1163,7 @@ GameObject:
   - component: {fileID: 2015507634}
   - component: {fileID: 2015507641}
   - component: {fileID: 2015507642}
+  - component: {fileID: 2015507645}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1407,6 +1408,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shrinkMultiplier: 0.5
   toggleCooldown: 0.1
+--- !u!114 &2015507645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015507633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803c42899e2764f328d6b8507024ca01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 519420031}
+  _belowMargin: 1
+  _aboveMargin: -1
+  _horizontalMargin: -1
+  _ignoreWhenPaused: 1
 --- !u!1 &2111408115
 GameObject:
   m_ObjectHideFlags: 0
