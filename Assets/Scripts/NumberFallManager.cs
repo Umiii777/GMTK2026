@@ -5,11 +5,12 @@ public class NumberFallManager : MonoBehaviour
 {
     public static NumberFallManager instance;
 
-    public bool isToFallMinuteNumbers = true;
-    public bool isToFallSecondNumbers = true;
-    public bool isToFallMillisecondNumbers = true;
-    public int chanceForNoMillisecondNumbers = 5;
+    public bool isToFallMinuteNumbers;
+    public bool isToFallSecondNumbers;
+    public bool isToFallMillisecondNumbers;
+    public int chanceForNoMillisecondNumbers = 10;
     public float intervalMillisecondNumbersFalling = 0.3f;
+    public float stoppingForce = 10f;
 
     [SerializeField]
     private GameObject[] numberPrefabs;
@@ -27,6 +28,12 @@ public class NumberFallManager : MonoBehaviour
         StartCoroutine(KeepFallingSecondNumbers());
         StartCoroutine(KeepFallingMillisecondNumbers());
     }
+
+    public void SetStoppingForce(float force) => stoppingForce = force;
+
+    public void SetChanceForNoMillisecondNumbers(int chance) => chanceForNoMillisecondNumbers = chance;
+
+    public void SetIsToFallMillisecondNumbers(bool value) => isToFallMillisecondNumbers = value;
 
     private IEnumerator KeepFallingMinuteNumbers()
     {
@@ -68,7 +75,9 @@ public class NumberFallManager : MonoBehaviour
     private void FallMinuteNumbers()
     {
         int number = int.Parse(Timer.instance.countdown.FormattedRemainingTime[0].ToString());
-        Instantiate(numberPrefabs[number], timeNumberPositions[0].position, Quaternion.identity, transform);
+        GameObject numberFall = Instantiate(numberPrefabs[number], timeNumberPositions[0].position, Quaternion.identity, transform);
+
+        numberFall.GetComponent<Rigidbody2D>().drag = stoppingForce;
     }
 
     private void FallSecondNumbers(int count)
@@ -76,7 +85,9 @@ public class NumberFallManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int number = int.Parse(Timer.instance.countdown.FormattedRemainingTime[2 - i].ToString());
-            Instantiate(numberPrefabs[number], timeNumberPositions[2 - i].position, Quaternion.identity, transform);
+            GameObject numberFall = Instantiate(numberPrefabs[number], timeNumberPositions[2 - i].position, Quaternion.identity, transform);
+            
+            numberFall.GetComponent<Rigidbody2D>().drag = stoppingForce;
         }
     }
 
@@ -86,8 +97,9 @@ public class NumberFallManager : MonoBehaviour
         {
             int number = int.Parse(Timer.instance.countdown.FormattedRemainingTime[4 - i].ToString());
             GameObject numberfall = Instantiate(numberPrefabs[number], timeNumberPositions[4 - i].position, Quaternion.identity, transform);
-            numberfall.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+            numberfall.transform.localScale = new Vector3(0.45f, 0.45f, 1f);
             numberfall.GetComponent<Rigidbody2D>().gravityScale = 2f;
+            numberfall.GetComponent<Rigidbody2D>().drag = stoppingForce;
         }
     }
 }

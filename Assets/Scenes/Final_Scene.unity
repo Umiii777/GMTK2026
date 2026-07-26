@@ -439,16 +439,24 @@ MonoBehaviour:
     CameraSpeed: 2
     OnReached:
       m_PersistentCalls:
+        m_Calls: []
+  - Name: 
+    Height: 0
+    TriggerOnce: 0
+    SetCameraSpeed: 0
+    CameraSpeed: 0
+    OnReached:
+      m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
-          m_Mode: 0
+        - m_Target: {fileID: 521268718}
+          m_TargetAssemblyTypeName: NumberFallManager, Assembly-CSharp
+          m_MethodName: SetStoppingForce
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0
+            m_FloatArgument: 8
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -459,7 +467,19 @@ MonoBehaviour:
     CameraSpeed: 0
     OnReached:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 521268718}
+          m_TargetAssemblyTypeName: NumberFallManager, Assembly-CSharp
+          m_MethodName: SetIsToFallMillisecondNumbers
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - Name: 
     Height: 0
     TriggerOnce: 0
@@ -467,7 +487,19 @@ MonoBehaviour:
     CameraSpeed: 0
     OnReached:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 521268718}
+          m_TargetAssemblyTypeName: NumberFallManager, Assembly-CSharp
+          m_MethodName: SetChanceForNoMillisecondNumbers
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 6
+            m_FloatArgument: 6
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - Name: 
     Height: 0
     TriggerOnce: 0
@@ -475,15 +507,19 @@ MonoBehaviour:
     CameraSpeed: 0
     OnReached:
       m_PersistentCalls:
-        m_Calls: []
-  - Name: 
-    Height: 0
-    TriggerOnce: 0
-    SetCameraSpeed: 0
-    CameraSpeed: 0
-    OnReached:
-      m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 521268718}
+          m_TargetAssemblyTypeName: NumberFallManager, Assembly-CSharp
+          m_MethodName: SetStoppingForce
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 6
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   _logTriggers: 0
 --- !u!4 &396820103
 Transform:
@@ -646,7 +682,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 4, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 108100035}
@@ -874,11 +910,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4703d20544762e742b4d065e95c29a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isToFallMinuteNumbers: 1
+  isToFallMinuteNumbers: 0
   isToFallSecondNumbers: 1
   isToFallMillisecondNumbers: 0
   chanceForNoMillisecondNumbers: 4
   intervalMillisecondNumbersFalling: 0.3
+  stoppingForce: 10
   numberPrefabs:
   - {fileID: 7703802365668339947, guid: 2889353dfde705f4889ee1ebe50aeef5, type: 3}
   - {fileID: 498690421388094051, guid: f0e6c917ecba38d47b7081659a2b0878, type: 3}
@@ -1044,8 +1081,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isToSkipMainMenu: 0
-  platformSpawner: {fileID: 527330165}
-  mainMenuUI: {fileID: 117953808605844462}
 --- !u!1 &646958954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,7 +1543,7 @@ MonoBehaviour:
   interval: 0.6
   speed: -0.02
   RGBOffset: {x: 0.003, y: 0, z: -0.003, w: 0}
-  warp: 1
+  warp: 0
   warpVertical: 0
   warpTexOne:
   - {fileID: 2800000, guid: 98ac66190475d824fae63757fb89f1c1, type: 3}
@@ -2673,6 +2708,7 @@ GameObject:
   - component: {fileID: 2015507642}
   - component: {fileID: 2015507646}
   - component: {fileID: 2015507645}
+  - component: {fileID: 2015507647}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2946,6 +2982,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c073d788247c440b68ab8f3ee8e864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2015507647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015507633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803c42899e2764f328d6b8507024ca01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1192491098}
+  _belowMargin: 1
+  _aboveMargin: -1
+  _horizontalMargin: -1
+  _ignoreWhenPaused: 1
 --- !u!1 &2111408115
 GameObject:
   m_ObjectHideFlags: 0
