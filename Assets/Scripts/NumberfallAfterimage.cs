@@ -6,6 +6,7 @@ public class NumberfallAfterimage : MonoBehaviour
 {
     private void Start()
     {
+        transform.position += Vector3.forward;
         StartCoroutine(KeepDecreasingAlpha());
     }
 

@@ -18,6 +18,7 @@ public class OldTelevision : MonoBehaviour
 
     [Header("___________________________ Warp ___________________________")]
     public bool warp = true;
+    public bool warpVertical = false;
     public Texture2D[] warpTexOne;
     public Texture2D[] warpTexTwo;
 
@@ -90,7 +91,7 @@ public class OldTelevision : MonoBehaviour
                 Mat.SetTexture(propertyIDs[7], warpTexOne[Random.Range(0, warpTexOne.Length)]);
                 Mat.SetFloat(propertyIDs[8], w);
                 w = Random.Range(0f, stabilityTwo);
-                if (w >= 0.38f && w <= 1f)
+                if (warpVertical && w >= 0.38f && w <= 1f)
                 {
                     Mat.SetTexture(propertyIDs[9], warpTexTwo[Random.Range(0, warpTexTwo.Length)]);
                     Mat.SetFloat(propertyIDs[10], w);

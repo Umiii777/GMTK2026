@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -3386865118182182496}
   - component: {fileID: 5996465087966565539}
   - component: {fileID: 6101319364506042175}
+  - component: {fileID: 350026407187764445}
   m_Layer: 4
   m_Name: Number-fall_7
   m_TagString: Untagged
@@ -410,3 +411,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 1.4}
   m_EdgeRadius: 0
+--- !u!114 &350026407187764445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244679131133727366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d147fc3853f243d887112c6f44583ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massType: 0
+  dragMoveType: 0
+  canDrag: 1
+  limitDragDistance: 0
+  maxDragDistance: 3
